@@ -30,15 +30,14 @@ class AuthController extends Controller
     public function login(Request $request)
     {
         $validateData = $request->validate([
-            'email' => 'required',
-            'password' => 'required',
-
+            'email'     => 'required',
+            'password'  => 'required',
         ]);
         $credentials = request(['email', 'password']);
-        if (! $token = auth()->attempt($credentials)) {
-            return response()->json(['error' => 'Email or Password Invalid'], 401);
+        if ( ! $token = auth()->attempt( $credentials ) ) {
+            return response()->json( [ 'error' => 'Email or Password Invalid' ], 401 );
         }
-        return $this->respondWithToken($token);
+        return $this->respondWithToken( $token );
     }
 
     /**
